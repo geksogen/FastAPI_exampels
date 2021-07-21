@@ -33,7 +33,7 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
 
 @app.get("/")
 def read_root(credentials: HTTPBasicCredentials = Depends(get_current_username)):
-    return {"Hello": credentials.username}
+    return {"Aloha": "Men :)"}
 
 @app.get("/test/{item_id}")
 async def read_item(item_id: int, credentials: HTTPBasicCredentials = Depends(get_current_username)):
