@@ -4,8 +4,18 @@ from typing import Optional
 from pydantic import BaseModel
 import secrets
 
+from sqlalchemy import *
+
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
+
+metadata = MetaData()
+
+user = Table('user', metadata,
+             Column('user_id', Integer, primary_key=True),
+             Column('user_name', String(16), nullable=False),
+             Column('age', Integer, nullable=False)
+             )
 
 
 class Item(BaseModel):
