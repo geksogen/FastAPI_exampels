@@ -4,19 +4,8 @@ from typing import Optional
 from pydantic import BaseModel
 import secrets
 
-from sqlalchemy import *
-
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-
-metadata = MetaData()
-
-user = Table('user', metadata,
-             Column('user_id', Integer, primary_key=True),
-             Column('user_name', String(16), nullable=False),
-             Column('age', Integer, nullable=False)
-             )
-
 
 class Item(BaseModel):
     name: str
@@ -28,7 +17,6 @@ class Item(BaseModel):
 app = FastAPI()
 
 security = HTTPBasic()
-
 
 def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
     correct_username = secrets.compare_digest(credentials.username, "otus")
@@ -43,7 +31,7 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
 
 @app.get("/")
 def read_root(credentials: HTTPBasicCredentials = Depends(get_current_username)):
-    return {"Aloha": "Men :)"}
+    return {"Aloha": "Men ::)"}
 
 @app.get("/test/{item_id}")
 async def read_item(item_id: int, credentials: HTTPBasicCredentials = Depends(get_current_username)):
