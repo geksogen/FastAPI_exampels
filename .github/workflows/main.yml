@@ -15,3 +15,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "api-learn-otus"
           heroku_email: "dchorch@gmail.com"
+      - name: Run test
+        run: |
+          make install
