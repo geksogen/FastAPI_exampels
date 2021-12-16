@@ -1,20 +1,14 @@
-name: Deploy
-
-on:
-  push:
-    branches:
-      - main
-
+name: Run Test
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "api-learn-otus"
-          heroku_email: "dchorch@gmail.com"
-      - name: Run test
-        run: |
-          make install
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9.6
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9.6
+    - name: Install dependencies
+      run: |
+        make install
