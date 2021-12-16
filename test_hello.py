@@ -1,6 +1,8 @@
+from fastapi.testclient import TestClient
 from app import app
 
-with app.test_client() as c:
-    response = c.get("/check")
-    assert response.data == b'Hello World'
+client = TestClient(app)
+
+def test_valid_id():
+    response = client.get("/check")
     assert response.status_code == 200
