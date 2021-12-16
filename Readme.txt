@@ -7,3 +7,6 @@ https://docs.github.com/en/github/importing-your-projects-to-github/importing-so
 
 git pull origin main
 git push origin main
+
+unit test FastAPI
+https://medium.com/fastapi-tutorials/testing-fastapi-endpoints-f7e78f09b7b6

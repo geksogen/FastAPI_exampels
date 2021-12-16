@@ -1,5 +1,8 @@
 name: Run Test
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,3 +18,13 @@ jobs:
     - name: Test
       run: |
         make test
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: "api-learn-otus"
+            heroku_email: "dchorch@gmail.com"
