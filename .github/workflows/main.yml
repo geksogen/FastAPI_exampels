@@ -1,5 +1,10 @@
 name: Run Test
 on: [push]
+
+branding:
+  icon: "settings"
+  color: "purple"
+
 jobs:
   build:
     runs-on: ubuntu-latest

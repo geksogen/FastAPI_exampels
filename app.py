@@ -31,16 +31,20 @@ def get_current_username(credentials: HTTPBasicCredentials = Depends(security)):
 
 @app.get("/")
 def read_root(credentials: HTTPBasicCredentials = Depends(get_current_username)):
-    return {"Aloha": "Men :!)"}
+    return {"Aloha": "Men ::!)"}
 
 @app.get("/test/{item_id}")
 async def read_item(item_id: int, credentials: HTTPBasicCredentials = Depends(get_current_username)):
     print(item_id)
     return {"item_id": item_id}
 
+@app.get("/check")
+def hello():
+    return "Hello World"
 
 @app.post("/items/")
 async def create_item(item: Item, credentials: HTTPBasicCredentials = Depends(get_current_username)):
     return item
+
 
 #uvicorn.run(app, host="0.0.0.0", port="8080")
